@@ -96,7 +96,26 @@ public class CameraController : MonoBehaviour
             Vector2 currentMousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 deltaMouse = currentMousePosition - lastMousePosition;
             transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.up, deltaMouse.x);
-            transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.right, -deltaMouse.y);
+            Debug.Log(Vector3.Angle(transform.forward, Vector3.up));
+            if(Vector3.Angle(transform.forward, Vector3.up) < 6f)
+            {
+                if (-deltaMouse.y > 0)
+                {
+                    transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.right, -deltaMouse.y);
+                }
+            }
+            else if (Vector3.Angle(transform.forward, Vector3.up) > 174f)
+            {
+                if (-deltaMouse.y < 0)
+                {
+                    transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.right, -deltaMouse.y);
+                }
+            }
+            // Normal case
+            else
+            {
+                transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.right, -deltaMouse.y);
+            }
             transform.LookAt(cameraTarget.transform);
         }
         // At the end of each frame, update the last mouse position
