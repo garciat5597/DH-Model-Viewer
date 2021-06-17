@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
     private float dragModifer = 0.01f;
     private float rotationModifer = 0.01f;
     private float maxAngle = 88f;
+    private float maxZoomDistance = 20.0f;
+    private float minZoomDistance = 2.0f;
     private bool dragCamera;
     private bool rotateCamera;
     private Vector2 lastMousePosition;
@@ -125,7 +127,22 @@ public class CameraController : MonoBehaviour
     // Moves the camera forward and backward depending on scroll wheel delta
     void changeZoomLevel(float deltaZoom)
     {
-        transform.position += transform.forward * deltaZoom * zoomModifier;
+        float currentDist = Vector3.Distance(transform.position, cameraTarget.transform.position);
+        Debug.Log(currentDist);
+        if (deltaZoom > 0)
+        {
+            if (currentDist > minZoomDistance)
+            {
+                transform.position += transform.forward * deltaZoom * zoomModifier;
+            }
+        }
+        else
+        {
+            if (currentDist < maxZoomDistance)
+            {
+                transform.position += transform.forward * deltaZoom * zoomModifier;
+            }
+        } 
     }
 
     void resetCameraPosition()
