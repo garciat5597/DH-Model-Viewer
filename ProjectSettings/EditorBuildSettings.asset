@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AntonScene.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/AntonScene2.unity
+    guid: 67efc2725f58cb74dbd976f227ad07b1
   m_configObjects: {}
