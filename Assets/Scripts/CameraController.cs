@@ -11,7 +11,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject cameraTarget;
-    private float zoomModifier = 1.0f;
+    private float zoomModifier = 1.3f;
     private float dragModifer = 0.01f;
     private float rotationModifer = 0.01f;
     private float maxAngle = 88f;
@@ -98,7 +98,6 @@ public class CameraController : MonoBehaviour
             Vector2 currentMousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             Vector2 deltaMouse = currentMousePosition - lastMousePosition;
             transform.RotateAround(cameraTarget.transform.position, cameraTarget.transform.up, deltaMouse.x);
-            Debug.Log(Vector3.Angle(transform.forward, Vector3.up));
             if(Vector3.Angle(transform.forward, Vector3.up) < 6f)
             {
                 if (-deltaMouse.y > 0)
@@ -128,7 +127,6 @@ public class CameraController : MonoBehaviour
     void changeZoomLevel(float deltaZoom)
     {
         float currentDist = Vector3.Distance(transform.position, cameraTarget.transform.position);
-        Debug.Log(currentDist);
         if (deltaZoom > 0)
         {
             if (currentDist > minZoomDistance)
