@@ -29,7 +29,6 @@ public class AnnotationScript : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        Debug.LogWarning("Annotation entered");
         textBox.text = annotationText;
     }
 
