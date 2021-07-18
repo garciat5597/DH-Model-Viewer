@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropDown : MonoBehaviour
 {
     public GameObject allObjects;
     public GameObject[] objects;
+    public Text textBox;
+    public Text titleBox;
     GameObject Vase;
     GameObject Polyxena;
     GameObject KuanYu;
@@ -14,12 +17,32 @@ public class DropDown : MonoBehaviour
 
     private void Start()
     {
-        Vase = Instantiate(objects[0], objects[0].transform.position, objects[0].transform.rotation);
-        DontDestroyOnLoad(Vase);
+        KuanYu = Instantiate(objects[2], objects[2].transform.position, objects[2].transform.rotation);
+        DontDestroyOnLoad(KuanYu);
+        if (!textBox)
+        {
+            textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
+        }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
+        }
     }
 
     public void HandleInputData(int val)
     {
+        // Clear the annotation box when changing objects
+        if (!textBox)
+        {
+            textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
+        }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
+        }
+        textBox.text = "";
+        titleBox.text = "";
+
         if (val == 0)
         {
             Destroy(Polyxena);

@@ -40,8 +40,17 @@ public class AnnotationScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        titleBox.text = annotationTitle;
-        textBox.text = annotationText;
+        // Reset text if already active
+        if(titleBox.text == annotationTitle)
+        {
+            titleBox.text = "";
+            textBox.text = "";
+        }
+        else
+        {
+            titleBox.text = annotationTitle;
+            textBox.text = annotationText;
+        }
     }
 
 

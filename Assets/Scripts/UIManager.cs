@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class AnnotationManager : MonoBehaviour
+public class UIManager: MonoBehaviour
 {
     public GameObject AnnotationParent;
     public Transform[] annotations;
+    public Text textBox;
+    public Text titleBox;
+    public GameObject helpOverlay;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +20,14 @@ public class AnnotationManager : MonoBehaviour
             {
                 annotations = AnnotationParent.GetComponentsInChildren<Transform>();
             }
+        }
+        if (!textBox)
+        {
+            textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
+        }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
         }
     }
 
@@ -30,10 +42,21 @@ public class AnnotationManager : MonoBehaviour
                 annotations = AnnotationParent.GetComponentsInChildren<Transform>();
             }
         }
+        if (!textBox)
+        {
+            textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
+        }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
+        }
     }
 
     public void ToggleAnnotations()
     {
+        // Ensure text boxes are cleared
+        titleBox.text = "";
+        textBox.text = "";
         if (AnnotationParent)
         {
             foreach (Transform annotation in annotations)
@@ -49,5 +72,17 @@ public class AnnotationManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void toggleHelpOverlay()
+    {
+        if (helpOverlay.activeSelf)
+        {
+            helpOverlay.SetActive(false);
+        }
+        else
+        {
+            helpOverlay.SetActive(true);
+        }
     }
 }

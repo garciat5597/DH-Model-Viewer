@@ -11,7 +11,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject cameraTarget;
-    private float zoomModifier = 1.3f;
+    private float zoomModifier = 2.0f;
     private float dragModifer = 0.01f;
     private float rotationModifer = 0.01f;
     private float maxAngle = 88f;
