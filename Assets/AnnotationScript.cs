@@ -6,14 +6,21 @@ using UnityEngine.UI;
 public class AnnotationScript : MonoBehaviour
 {
     [SerializeField]
+    string annotationTitle = "This is a title";
+    [SerializeField]
     string annotationText = "This is an annotation";
     public Text textBox;
+    public Text titleBox;
     // Start is called before the first frame update
     void Start()
     {
         if (!textBox)
         {
             textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
+        }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
         }
     }
 
@@ -25,15 +32,21 @@ public class AnnotationScript : MonoBehaviour
         {
             textBox = GameObject.Find("AnnotationTextbox").GetComponent<Text>();
         }
+        if (!titleBox)
+        {
+            titleBox = GameObject.Find("AnnotationTitlebox").GetComponent<Text>();
+        }
     }
 
-    private void OnMouseEnter()
+    private void OnMouseDown()
     {
+        titleBox.text = annotationTitle;
         textBox.text = annotationText;
     }
 
+
     private void OnMouseExit()
     {
-        textBox.text = "";
+       // textBox.text = "";
     }
 }
