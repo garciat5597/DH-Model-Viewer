@@ -17,7 +17,7 @@ public class DropDown : MonoBehaviour
 
     private void Start()
     {
-        KuanYu = Instantiate(objects[2], objects[2].transform.position, objects[2].transform.rotation);
+        KuanYu = Instantiate(objects[0], objects[0].transform.position, objects[0].transform.rotation);
         DontDestroyOnLoad(KuanYu);
         if (!textBox)
         {
@@ -46,11 +46,11 @@ public class DropDown : MonoBehaviour
         if (val == 0)
         {
             Destroy(Polyxena);
-            Destroy(KuanYu);
+            Destroy(Vase);
             Destroy(Ding);
             Destroy(Altarpiece);
-            Vase = Instantiate(objects[0], objects[0].transform.position, objects[0].transform.rotation);
-            DontDestroyOnLoad(Vase);
+            KuanYu = Instantiate(objects[0], objects[0].transform.position, objects[0].transform.rotation);
+            DontDestroyOnLoad(KuanYu);
         }
         if (val == 1)
         {
@@ -63,12 +63,12 @@ public class DropDown : MonoBehaviour
         }
         if (val == 2)
         {
-            Destroy(Vase);
+            Destroy(KuanYu);
             Destroy(Polyxena);
             Destroy(Ding);
             Destroy(Altarpiece);
-            KuanYu = Instantiate(objects[2], objects[2].transform.position, objects[2].transform.rotation);
-            DontDestroyOnLoad(KuanYu);
+            Vase = Instantiate(objects[2], objects[2].transform.position, objects[2].transform.rotation);
+            DontDestroyOnLoad(Vase);
         }
         if (val == 3)
         {

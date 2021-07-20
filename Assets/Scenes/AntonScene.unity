@@ -14,17 +14,17 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.995283, g: 0.9968553, b: 1, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
@@ -32,7 +32,7 @@ RenderSettings:
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
-  m_DefaultReflectionMode: 0
+  m_DefaultReflectionMode: 1
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
@@ -1163,7 +1163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Use the scrollwheel to zoom in and out
+  m_Text: Use the scroll wheel to zoom in and out
 --- !u!222 &361217841
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Vase
+  m_Text: Guan Yu
 --- !u!222 &386465614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1834,9 +1834,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allObjects: {fileID: 664103854}
   objects:
-  - {fileID: 5356931536606093663, guid: 64c88d204e605fe4b828b552bbaa6d55, type: 3}
-  - {fileID: 3329395708662665067, guid: 4fe4c3ebcf3dca34fb1c12c0ef06a306, type: 3}
   - {fileID: 7699254166134363670, guid: 3fc581534ad28a0439ef7f273d382fae, type: 3}
+  - {fileID: 3329395708662665067, guid: 4fe4c3ebcf3dca34fb1c12c0ef06a306, type: 3}
+  - {fileID: 5356931536606093663, guid: 64c88d204e605fe4b828b552bbaa6d55, type: 3}
   - {fileID: 5272446596376692470, guid: c31812842d3c9c74d9c4c0a48443dbbf, type: 3}
   - {fileID: 3442393742373954966, guid: de16694e43a2b574597b7bb5e8d09100, type: 3}
   textBox: {fileID: 0}
@@ -2412,11 +2412,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Vase
+    - m_Text: Guan Yu
       m_Image: {fileID: 0}
     - m_Text: Polyxena
       m_Image: {fileID: 0}
-    - m_Text: KuanYu
+    - m_Text: Vase
       m_Image: {fileID: 0}
     - m_Text: Ding
       m_Image: {fileID: 0}
@@ -4576,8 +4576,8 @@ Camera:
   m_GameObject: {fileID: 1687258581}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
