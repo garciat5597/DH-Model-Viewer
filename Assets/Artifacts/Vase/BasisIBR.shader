@@ -245,7 +245,7 @@ Shader "Custom/BasisIBR"
                 // We further optimize a few light invariant terms
                 // brdfData.normalizationTerm = (roughness + 0.5) * 4.0 rewritten as roughness * 4.0 + 2.0 to a fit a MAD.
                 half LoH2 = LoH * LoH;
-                half3 specularTerm = getMFDistEstimate(weights, NoH)[0] / (max(0.1h, LoH2) * brdfData.normalizationTerm);
+                half3 specularTerm = getMFDistEstimate(weights, NoH) / (max(0.1h, LoH2) * brdfData.normalizationTerm);
 
                 // On platforms where half actually means something, the denominator has a risk of overflow
                 // clamp below was added specifically to "fix" that, but dx compiler (we convert bytecode to metal/gles)
