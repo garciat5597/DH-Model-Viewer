@@ -1339,7 +1339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Guan Yu
+  m_Text: Warrior Prince (Guan Yu)
 --- !u!222 &386465614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1936,6 +1936,7 @@ MonoBehaviour:
   - {fileID: 5356931536606093663, guid: 64c88d204e605fe4b828b552bbaa6d55, type: 3}
   - {fileID: 5272446596376692470, guid: c31812842d3c9c74d9c4c0a48443dbbf, type: 3}
   - {fileID: 3442393742373954966, guid: de16694e43a2b574597b7bb5e8d09100, type: 3}
+  - {fileID: 959588749310829477, guid: 2cfccb1a2bcec2f4b9afbbf5a3da879b, type: 3}
   textBox: {fileID: 0}
   titleBox: {fileID: 0}
 --- !u!4 &664103856
@@ -2510,15 +2511,17 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Guan Yu
+    - m_Text: Warrior Prince (Guan Yu)
       m_Image: {fileID: 0}
-    - m_Text: Polyxena
+    - m_Text: Abduction of Polyxena
       m_Image: {fileID: 0}
-    - m_Text: Vase
+    - m_Text: "Vase (Cloisonn\xE9)"
       m_Image: {fileID: 0}
-    - m_Text: Ding
+    - m_Text: Ding food vessel
       m_Image: {fileID: 0}
-    - m_Text: Altarpiece
+    - m_Text: "Cloisonn\xE9 Altarpiece"
+      m_Image: {fileID: 0}
+    - m_Text: Traveling in Autumn Mountains
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

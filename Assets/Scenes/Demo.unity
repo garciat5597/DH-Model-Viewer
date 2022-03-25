@@ -745,7 +745,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Vase
+  m_Text: "Vase (cloisonn\xE9)"
 --- !u!222 &386465614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1286,6 +1286,9 @@ MonoBehaviour:
   - {fileID: 7699254166134363670, guid: 3fc581534ad28a0439ef7f273d382fae, type: 3}
   - {fileID: 5272446596376692470, guid: c31812842d3c9c74d9c4c0a48443dbbf, type: 3}
   - {fileID: 3442393742373954966, guid: de16694e43a2b574597b7bb5e8d09100, type: 3}
+  - {fileID: 3442393742373954966, guid: de16694e43a2b574597b7bb5e8d09100, type: 3}
+  textBox: {fileID: 0}
+  titleBox: {fileID: 0}
 --- !u!4 &664103856
 Transform:
   m_ObjectHideFlags: 0
@@ -1498,15 +1501,17 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Vase
+    - m_Text: "Vase (cloisonn\xE9)"
       m_Image: {fileID: 0}
-    - m_Text: Polyxena
+    - m_Text: Abduction of Polyxena
       m_Image: {fileID: 0}
-    - m_Text: KuanYu
+    - m_Text: Warrior Prince (Guan Yu)
       m_Image: {fileID: 0}
-    - m_Text: Ding
+    - m_Text: Ding food vessel
       m_Image: {fileID: 0}
-    - m_Text: Altarpiece
+    - m_Text: "Cloisonn\xE9 Altarpiece"
+      m_Image: {fileID: 0}
+    - m_Text: Traveling in Autumn Mountains
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
