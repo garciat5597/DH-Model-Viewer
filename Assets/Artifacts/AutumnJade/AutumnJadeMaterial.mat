@@ -77,27 +77,43 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight0:
-        m_Texture: {fileID: 2800000, guid: 983cfed47b05b7144ae22bca801cfc1a, type: 3}
+        m_Texture: {fileID: 2800000, guid: f786e120b060ed34e8662877141658b0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight1:
-        m_Texture: {fileID: 2800000, guid: bb6fd89189c3cab4695c3de36d154e20, type: 3}
+        m_Texture: {fileID: 2800000, guid: f0b49cce73b320f47b271a58ffb4140a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight2:
-        m_Texture: {fileID: 2800000, guid: 38a38c3f531fd6942a1d835e614b12e7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 7dbe7d0309d5ce64b9f13a87efcd4b4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight3:
-        m_Texture: {fileID: 2800000, guid: a6e2add71110bb44e8dddeb1b14be956, type: 3}
+        m_Texture: {fileID: 2800000, guid: b565bdb1e1c06bf48a10137896dde2fe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight4:
-        m_Texture: {fileID: 2800000, guid: a3130fae2599c07489c4b655536a0a7b, type: 3}
+        m_Texture: {fileID: 2800000, guid: da014970bc621264187fbf9536b93f12, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Weight5:
-        m_Texture: {fileID: 2800000, guid: 9ca04923f056bfa49903ef658259842d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 18c92a177758c6e4bb0813adfb39cc62, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Weight6:
+        m_Texture: {fileID: 2800000, guid: 5a00f6dfdaed4ee4dbe7fcf4ac7a8cdf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Weight7:
+        m_Texture: {fileID: 2800000, guid: 3791ec909d630d346960f593d4c0c84b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Weight8:
+        m_Texture: {fileID: 2800000, guid: 38d9907727a7c284bb5beb6d1354d0ee, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Weight9:
+        m_Texture: {fileID: 2800000, guid: 1e1edc7aaa21b6244ac6c1d231452481, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:

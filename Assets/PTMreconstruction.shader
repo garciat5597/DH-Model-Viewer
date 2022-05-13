@@ -3,7 +3,7 @@
 // However, if you want to author shaders in shading language you can use this teamplate as a base.
 // Please note, this shader does not necessarily match perfomance of the built-in URP Lit shader.
 // This shader works with URP 7.1.x and above
-Shader "Custom/BasisIBR"
+Shader "Custom/PTM"
 {
     Properties
     {
@@ -14,6 +14,10 @@ Shader "Custom/BasisIBR"
         _Weight3("Weight3", 2D) = "" {}
         _Weight4("Weight4", 2D) = "" {}
         _Weight5("Weight5", 2D) = "" {}
+        _Weight6("Weight6", 2D) = "" {}
+        _Weight7("Weight7", 2D) = "" {}
+        _Weight8("Weight8", 2D) = "" {}
+        _Weight9("Weight9", 2D) = "" {}
 
         // Blending state
         [HideInInspector] _Surface("__surface", Float) = 0.0
@@ -133,8 +137,7 @@ Shader "Custom/BasisIBR"
             float2 uvLM                     : TEXCOORD1;
             float4 positionWSAndFogFactor   : TEXCOORD2; // xyz: positionWS, w: vertex fog factor
             half3  normalWS                 : TEXCOORD3;
-            half3 tangentWS                 : TEXCOORD4;
-            half3 bitangentWS               : TEXCOORD5;
+            half3  normalOS                 : TEXCOORD4;
 
 #ifdef _MAIN_LIGHT_SHADOWS
             float4 shadowCoord              : TEXCOORD6; // compute shadow coord per-vertex for the main light
@@ -165,13 +168,13 @@ Shader "Custom/BasisIBR"
             output.positionWSAndFogFactor = float4(vertexInput.positionWS, fogFactor);
             output.normalWS = vertexNormalInput.normalWS;
 
-            // Here comes the flexibility of the input structs.
-            // In the variants that don't have normal map defined
-            // tangentWS and bitangentWS will not be referenced and
-            // GetVertexNormalInputs is only converting normal
-            // from object to world space
-            output.tangentWS = vertexNormalInput.tangentWS;
-            output.bitangentWS = vertexNormalInput.bitangentWS;
+            //// Here comes the flexibility of the input structs.
+            //// In the variants that don't have normal map defined
+            //// tangentWS and bitangentWS will not be referenced and
+            //// GetVertexNormalInputs is only converting normal
+            //// from object to world space
+            //output.tangentWS = vertexNormalInput.tangentWS;
+            //output.bitangentWS = vertexNormalInput.bitangentWS;
 
 #ifdef _MAIN_LIGHT_SHADOWS
             // shadow coord for the main light is computed in vertex.
@@ -192,13 +195,17 @@ Shader "Custom/BasisIBR"
         sampler2D  _Weight3;
         sampler2D  _Weight4;
         sampler2D  _Weight5;
+        sampler2D  _Weight6;
+        sampler2D  _Weight7;
+        sampler2D  _Weight8;
+        sampler2D  _Weight9;
 
-         #define BASIS_COUNT 6
+         #define BASIS_COUNT 10
 
         float3 EvaluatePTM(float3 weights[BASIS_COUNT], float3 lightDirection)
         {
             float3 pixelColor = float3(0, 0, 0);
-            float u = lightDirection.x;
+            float u = -lightDirection.x;  // Unity flips x-coordinate for some reason.
             float v = lightDirection.y;
             float w = lightDirection.z;
             float row[BASIS_COUNT];
@@ -208,7 +215,11 @@ Shader "Custom/BasisIBR"
             row[2] = v;
             row[3] = w;
             row[4] = u * u;
-            row[5] = u * v;
+            row[5] = v * v;
+            row[6] = w * w;
+            row[7] = u * v;
+            row[8] = u * w;
+            row[9] = v * w;
 
             pixelColor = pixelColor + weights[0] * row[0];
             pixelColor = pixelColor + weights[1] * row[1];
@@ -216,6 +227,10 @@ Shader "Custom/BasisIBR"
             pixelColor = pixelColor + weights[3] * row[3];
             pixelColor = pixelColor + weights[4] * row[4];
             pixelColor = pixelColor + weights[5] * row[5];
+            pixelColor = pixelColor + weights[6] * row[6];
+            pixelColor = pixelColor + weights[7] * row[7];
+            pixelColor = pixelColor + weights[8] * row[8];
+            pixelColor = pixelColor + weights[9] * row[9];
 
             return pixelColor.xyz;
         }
@@ -223,8 +238,11 @@ Shader "Custom/BasisIBR"
         // Based on com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl
         float3 LightingPTM(float3 weights[BASIS_COUNT], Light light, float3 normalWS)
         {
-            return EvaluatePTM(weights, mul(unity_WorldToObject, float4(light.direction, 0)).xyz) * light.color
-                * light.distanceAttenuation * light.shadowAttenuation;// *smoothstep(-0.5, 0.0, dot(light.direction, normalWS));
+            // Prevent negative n.l
+            float3 adjustedLightDirection = normalize(light.direction - min(0, dot(light.direction, normalWS)) * normalWS);
+
+            return EvaluatePTM(weights, normalize(mul(unity_WorldToObject, float4(adjustedLightDirection, 0)).xyz)) * light.color
+                * light.distanceAttenuation * light.shadowAttenuation * smoothstep(-0.5, 0.0, dot(light.direction, normalWS));
         }
 
         half4 LitPassFragment(Varyings input) : SV_Target
@@ -243,11 +261,6 @@ Shader "Custom/BasisIBR"
             float3 positionWS = input.positionWSAndFogFactor.xyz;
             half3 viewDirectionWS = SafeNormalize(GetCameraPositionWS() - positionWS);
 
-            // BRDFData holds energy conserving diffuse and specular material reflections and its roughness.
-            // It's easy to plugin your own shading fuction. You just need replace LightingPhysicallyBased function
-            // below with your own.
-            //BRDFData brdfData;
-            //InitializeBRDFData(surfaceData.albedo, surfaceData.metallic, surfaceData.specular, surfaceData.smoothness, surfaceData.alpha, brdfData);
 
             // Light struct is provide by LWRP to abstract light shader variables.
             // It contains light direction, color, distanceAttenuation and shadowAttenuation.
@@ -265,10 +278,6 @@ Shader "Custom/BasisIBR"
             Light mainLight = GetMainLight();
 #endif
 
-            // Mix diffuse GI with environment reflections.
-            // half3 color = GlobalIllumination(brdfData, bakedGI, surfaceData.occlusion, normalWS, viewDirectionWS);
-            float3 color = float3(0, 0, 0);
-
             // Extract weights for PTM
             float3 weights[BASIS_COUNT];
             weights[0] = 2 * tex2D(_Weight0, input.uv).rgb - 1;
@@ -277,6 +286,22 @@ Shader "Custom/BasisIBR"
             weights[3] = 2 * tex2D(_Weight3, input.uv).rgb - 1;
             weights[4] = 2 * tex2D(_Weight4, input.uv).rgb - 1;
             weights[5] = 2 * tex2D(_Weight5, input.uv).rgb - 1;
+            weights[6] = 2 * tex2D(_Weight6, input.uv).rgb - 1;
+            weights[7] = 2 * tex2D(_Weight7, input.uv).rgb - 1;
+            weights[8] = 2 * tex2D(_Weight8, input.uv).rgb - 1;
+            weights[9] = 2 * tex2D(_Weight9, input.uv).rgb - 1;
+
+            // BRDFData holds energy conserving diffuse and specular material reflections and its roughness.
+            // It's easy to plugin your own shading fuction. You just need replace LightingPhysicallyBased function
+            // below with your own.
+            // Fake BRDFData for global illumination -- evaluate PTM at normal direction as an estimate of albedo.
+            float3 albedo = EvaluatePTM(weights, normalize(mul(unity_WorldToObject, float4(normalWS, 0)).xyz));
+            BRDFData brdfData;
+            float alpha = 1.0; // needs to be an l-value
+            InitializeBRDFData(albedo, 0.0, float3(0.0, 0.0, 0.0), 0.0, alpha, brdfData);
+
+            // Mix diffuse GI with environment reflections.
+            float3 color = GlobalIllumination(brdfData, bakedGI, 1.0, normalWS, viewDirectionWS);
 
             color += LightingPTM(weights, mainLight, normalWS);
 
@@ -294,7 +319,7 @@ Shader "Custom/BasisIBR"
                 Light light = GetAdditionalLight(i, positionWS);
 
                 // Same functions used to shade the main light.
-                color += LightingPTM(weights, light, normalWS);
+                //color += LightingPTM(weights, light, normalWS);
             }
 #endif
 
