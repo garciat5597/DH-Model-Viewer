@@ -1339,7 +1339,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Warrior Prince (Guan Yu)
+  m_Text: Guan Yu
 --- !u!222 &386465614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2511,17 +2511,17 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Warrior Prince (Guan Yu)
+    - m_Text: Guan Yu
       m_Image: {fileID: 0}
-    - m_Text: Abduction of Polyxena
+    - m_Text: Polyxena
       m_Image: {fileID: 0}
-    - m_Text: "Vase (Cloisonn\xE9)"
+    - m_Text: Vase
       m_Image: {fileID: 0}
-    - m_Text: Ding food vessel
+    - m_Text: Ding
       m_Image: {fileID: 0}
-    - m_Text: "Cloisonn\xE9 Altarpiece"
+    - m_Text: Altarpiece
       m_Image: {fileID: 0}
-    - m_Text: Traveling in Autumn Mountains
+    - m_Text: Jade
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
